@@ -11,10 +11,21 @@ public class AddressBook {
 	// List to store contacts
 	List<Person> contactList = new ArrayList<>();
 
-	// Add contact
+	// Add contact with duplicate check
 	public void addContact(Person person) {
-		contactList.add(person);
-		System.out.println("Contact Added Successfully");
+
+		boolean duplicate = contactList.stream().anyMatch(p -> p.getFirstName().equalsIgnoreCase(person.getFirstName())
+				&& p.getLastName().equalsIgnoreCase(person.getLastName()));
+
+		if (duplicate) {
+
+			System.out.println("Duplicate contact found. Cannot add.");
+
+		} else {
+
+			contactList.add(person);
+			System.out.println("Contact Added Successfully");
+		}
 	}
 
 	// Edit contact using Stream API
@@ -52,5 +63,11 @@ public class AddressBook {
 			System.out.println("No contacts available");
 		else
 			contactList.stream().forEach(System.out::println);
+	}
+
+	
+	// Return all contacts - UC8
+	public List<Person> getContacts() {
+		return contactList;
 	}
 }
