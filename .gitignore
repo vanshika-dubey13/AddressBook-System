@@ -1,0 +1,84 @@
+# ===============================
+# Maven
+# ===============================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# ===============================
+# Logs
+# ===============================
+*.log
+
+# ===============================
+# Compiled files
+# ===============================
+*.class
+
+# ===============================
+# OS files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Eclipse / STS
+# ===============================
+.project
+.classpath
+.settings/
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# ===============================
+# IntelliJ IDEA
+# ===============================
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ===============================
+# NetBeans
+# ===============================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+# ===============================
+# VS Code
+# ===============================
+.vscode/
+
+# ===============================
+# Build files
+# ===============================
+*.jar
+*.war
+*.ear
+
+# ===============================
+# Environment files
+# ===============================
+.env
+
+# ===============================
+# Temporary files
+# ===============================
+*.tmp
+*.swp
+
+# Maven Wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# Git attributes
+.gitattributes
+
+# Spring helper file
+HELP.md
