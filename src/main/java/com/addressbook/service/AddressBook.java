@@ -1,66 +1,55 @@
-package com.addressbook;
-
+package com.addressbook.service;
+import com.addressbook.model.Person;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+public class AddressBook {
 
-import com.addressbook.model.Person;
-import com.addressbook.service.AddressBook;
+	// List to store contacts
+	ArrayList<Person> contactList = new ArrayList<>();
 
-@SpringBootApplication
-public class AddressBookSystemApplication {
+	// Method to add contact
+	public void addContact(Person person) {
+		contactList.add(person);
+		System.out.println("Contact Added Successfully");
+	}
 
-	public static void main(String[] args) {
-
-		SpringApplication.run(AddressBookSystemApplication.class, args);
-
-		System.out.println("Welcome to Address Book Program");
+	// Method to edit contact using first name
+	public void editContact(String name) {
 
 		Scanner scanner = new Scanner(System.in);
 
-		AddressBook addressBook = new AddressBook();
+		// Find person using Stream API
+		Optional<Person> personOptional = contactList.stream()
+				.filter(person -> person.getFirstName().equalsIgnoreCase(name)).findFirst();
 
-		System.out.print("Enter First Name: ");
-		String firstName = scanner.nextLine();
+		if (personOptional.isPresent()) {
 
-		System.out.print("Enter Last Name: ");
-		String lastName = scanner.nextLine();
+			Person person = personOptional.get();
 
-		System.out.print("Enter Address: ");
-		String address = scanner.nextLine();
+			System.out.print("Enter new Address: ");
+			person.setAddress(scanner.nextLine());
 
-		System.out.print("Enter City: ");
-		String city = scanner.nextLine();
+			System.out.print("Enter new City: ");
+			person.setCity(scanner.nextLine());
 
-		System.out.print("Enter State: ");
-		String state = scanner.nextLine();
+			System.out.print("Enter new State: ");
+			person.setState(scanner.nextLine());
 
-		System.out.print("Enter Zip: ");
-		String zip = scanner.nextLine();
+			System.out.print("Enter new Zip: ");
+			person.setZip(scanner.nextLine());
 
-		System.out.print("Enter Phone Number: ");
-		String phone = scanner.nextLine();
+			System.out.print("Enter new Phone Number: ");
+			person.setPhoneNumber(scanner.nextLine());
 
-		System.out.print("Enter Email: ");
-		String email = scanner.nextLine();
+			System.out.print("Enter new Email: ");
+			person.setEmail(scanner.nextLine());
 
-		Person person = new Person(firstName, lastName, address, city, state, zip, phone, email);
+			System.out.println("Contact Updated Successfully");
 
-		addressBook.addContact(person);
-
-		// UC3: Edit contact
-		System.out.print("Enter name to edit contact: ");
-		String name = scanner.nextLine();
-
-		addressBook.editContact(name);
-
-		// UC4: Delete Contact
-		System.out.print("Enter name to delete contact: ");
-		String deleteName = scanner.nextLine();
-
-		addressBook.deleteContact(deleteName);
-
-		scanner.close();
+		} else {
+			System.out.println("Contact not found");
+		}
 	}
 }
